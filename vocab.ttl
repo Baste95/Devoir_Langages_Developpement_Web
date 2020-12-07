@@ -17,6 +17,14 @@ news:News a rdfs:Class ;
     rdfs:label "News" ;   
     vs:term_status "experimental" .
 
+news:Comments a rdfs:Class ;
+    rdfs:label "Commentaire" ;   
+    vs:term_status "experimental" .
+
+news:Authors a rdfs:Class ;
+    rdfs:label "Auteurs" ;   
+    vs:term_status "experimental" .
+
 news:title a rdfs:Property ;
     rdfs:label "Titre" ;
     rdfs:domain o:Resource ;
@@ -43,6 +51,11 @@ news:image a rdfs:Property ;
     vs:term_status "experimental" .
 
 news:author a rdfs:Property ;
+    rdfs:label "Auteur" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+news:comments a rdfs:Property ;
     rdfs:label "Auteur" ;
     rdfs:domain o:Resource ;
     vs:term_status "experimental" .
