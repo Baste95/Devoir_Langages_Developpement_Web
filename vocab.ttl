@@ -4,10 +4,10 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
 @prefix o: <http://omeka.org/s/vocabs/o#> .
-@prefix student: <https://duraspace.org/wp-content/uploads/2020/02/vivo.owl#Student> .
 @prefix teach: <http://linkedscience.org/teach/ns#> .
 @prefix foaf: <http://xmlns.com/foaf/0.1/>.
 @prefix schema: <http://schema.org/>.
+@prefix news: <http://dbpedia.org/ontology/Article> .
 
 
 <http://dbpedia.org/ontology/Article> a owl:Ontology ;
