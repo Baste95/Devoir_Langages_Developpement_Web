@@ -1,0 +1,48 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix vs: <http://www.w3.org/2003/06/sw-vocab-status/ns#> .
+@prefix o: <http://omeka.org/s/vocabs/o#> .
+@prefix student: <https://duraspace.org/wp-content/uploads/2020/02/vivo.owl#Student> .
+@prefix teach: <http://linkedscience.org/teach/ns#> .
+@prefix foaf: <http://xmlns.com/foaf/0.1/>.
+@prefix schema: <http://schema.org/>.
+
+
+<http://dbpedia.org/ontology/Article> a owl:Ontology ;
+    dcterms:title "Examen THYP du 7 décembre 2020" .
+
+news:News a rdfs:Class ;
+    rdfs:label "News" ;   
+    vs:term_status "experimental" .
+
+news:title a rdfs:Property ;
+    rdfs:label "Titre" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+news:subject a rdfs:Property ;
+    rdfs:label "Sujet" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+news:description a rdfs:Property ;
+    rdfs:label "Description" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+news:date a rdfs:Property ;
+    rdfs:label "Date" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+news:image a rdfs:Property ;
+    rdfs:label "Image de la news" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
+
+news:author a rdfs:Property ;
+    rdfs:label "Auteur" ;
+    rdfs:domain o:Resource ;
+    vs:term_status "experimental" .
