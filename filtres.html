@@ -7,6 +7,7 @@
         <script src="js/main.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <title>Examen THYP du 7 décembre 2020</title>
+
         <style>
             #title h1{
                 font-family: 'Crimson Text', serif;
@@ -25,13 +26,17 @@
 
     <body class="bg-light">
         <header id="title">
-            <h1>Afficher les items <small>PELMARD Bastien</small></h1>
+            <h1>Filtrer les items <small>PELMARD Bastien</small></h1>
         </header>
+
+        <select id="selectSubjects" style="margin-left: 2rem;">
+            <option value="Tous">Tous</option>
+        </select>
         
 
-        <div id="content" style="margin: 2rem 2rem 0;">
-            <h5>Items</h5>
-            <div id="itemsContainer" class="container"></div>
+        <div id="content">
+            <h5 style="margin: 2rem 2rem 0;">Items</h5>
+            <div id="itemsContainer" class="container" ></div>
         </div>
         
 
@@ -40,6 +45,13 @@
 
             getData();
 
+            let options = [];
+            let dataResults;
+            let select = document.getElementById("selectSubjects");
+            select.addEventListener("change", function(){
+                tri(this.value);
+            })
+
             function getData(){
                 d3.select('body');
                 d3.queue()
@@ -47,9 +59,63 @@
                 .awaitAll(function(error, results) {
                     if (error) throw error;
                     console.log(results);
+                    dataResults = results;
+                    selectOptions(results);
                     showItems(results);    
 
                 });
+            }
+
+            function selectOptions(results){
+                let select = document.getElementById("selectSubjects");
+                for(let i = 0; i < results[0].length; i++){
+                    console.log(results[0][i]["dcterms:subject"][0]["@value"]);
+                    if(!options.includes(results[0][i]["dcterms:subject"][0]["@value"])){
+                        options.push(results[0][i]["dcterms:subject"][0]["@value"]);
+                        select.innerHTML += "<option value='" + results[0][i]["dcterms:subject"][0]["@value"] + "'>" + results[0][i]["dcterms:subject"][0]["@value"] +"</option>";
+                    }
+                }
+                console.log(options);
+
+            }
+
+
+            function tri(value){
+                document.getElementById("itemsContainer").innerHTML = "";
+                if(value === "Tous"){
+                    showItems(dataResults);
+                }
+                else{
+                    showItemsTri(value)
+                }
+                /*let profils = divContainers.getElementsByClassName("card");
+                
+                document.getElementById("btn_menu").innerText = id
+                Object.values(profils).forEach(element => {
+                    if(id === "Tous"){
+                        element.classList.remove("hide");
+                    }
+                    else if(element.innerHTML.includes(id)){
+                        element.classList.remove("hide");
+                    }
+                    else {
+                        element.classList.add("hide");
+                    }
+                });*/
+            }
+
+            function showItemsTri(value){
+                let dataToSend = [];
+                for(let i = 0; i < dataResults[0].length; i++){
+                    if(dataResults[0][i]["dcterms:subject"][0]["@value"] === value){
+                        dataToSend.push(dataResults[0][i]);
+                        console.log('Send');
+                    }
+
+                }
+                console.log(dataToSend);
+                showItems(dataToSend);
+
             }
 
             function showItems(data){
@@ -88,6 +154,8 @@
                     .html(d => {
                         return "Media : " + "<a target='_blank' href='" + d["o:media"][0]["@id"] + "'>" + d["o:media"][0]["@id"]  + "</a>";
                     });
+
+                
 
             }
         </script>
